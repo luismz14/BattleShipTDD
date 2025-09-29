@@ -1,0 +1,12 @@
+# --- Maven ---
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+.vscode/
+
+.DS_Store
+Thumbs.db
+
+*.log
+*.tmp
+*.swp

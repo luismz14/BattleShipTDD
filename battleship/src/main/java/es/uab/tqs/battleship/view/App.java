@@ -1,4 +1,4 @@
-package es.uab.tqs.battleship;
+package es.uab.tqs.battleship.view;
 
 /**
  * Hello world!

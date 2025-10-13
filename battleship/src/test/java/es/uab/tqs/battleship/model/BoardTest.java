@@ -34,5 +34,12 @@ public class BoardTest {
         assertThrows(IndexOutOfBoundsException.class, () -> {
             board.getCellState(10, 0);
         });
-}
+    }
+
+    @Test
+    void testPlaceShipOnBoard() {
+        Board board = new Board(10);
+        board.setCellState(0, 0, CellState.SHIP);
+        assertEquals(CellState.SHIP, board.getCellState(0, 0));
+    }
 }

@@ -3,7 +3,6 @@ package es.uab.tqs.battleship.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Test;
 
 public class BoardTest {
@@ -15,7 +14,7 @@ public class BoardTest {
     @Test
     void testBoardInitializedWithWater() {
         Board board = new Board(10);
-        // assertEquals(CellState.WATER, board.getCellState(0, 0));
+        assertEquals(CellState.WATER, board.getCellState(0, 0));
     }
 
     @Test

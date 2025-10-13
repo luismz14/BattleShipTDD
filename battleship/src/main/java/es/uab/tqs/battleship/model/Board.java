@@ -14,4 +14,11 @@ public class Board {
             }
         }
     }
+
+    public CellState getCellState(int row, int col) {
+    if (row < 0 || row >= size || col < 0 || col >= size) {
+        throw new IndexOutOfBoundsException("Invalid coordinates");
+    }
+    return grid[row][col];
+}
 }

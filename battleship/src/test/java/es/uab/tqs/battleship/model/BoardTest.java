@@ -42,4 +42,29 @@ public class BoardTest {
         board.setCellState(0, 0, CellState.SHIP);
         assertEquals(CellState.SHIP, board.getCellState(0, 0));
     }
+
+    @Test
+    void testShootWater() {
+        Board board = new Board(10);
+        CellState result = board.shoot(0, 0);
+        assertEquals(CellState.WATER, result);
+    }
+
+    @Test
+    void testShootShip() {
+        Board board = new Board(10);
+        board.setCellState(0, 0, CellState.SHIP);
+        CellState result = board.shoot(0, 0);
+        assertEquals(CellState.HIT, result);
+        assertEquals(CellState.HIT, board.getCellState(0, 0));
+    }
+
+    @Test
+    void testCannotShootSamePositionTwice() {
+        Board board = new Board(10);
+        board.shoot(0, 0);
+        assertThrows(IllegalStateException.class, () -> {
+            board.shoot(0, 0);
+        });
+    }
 }

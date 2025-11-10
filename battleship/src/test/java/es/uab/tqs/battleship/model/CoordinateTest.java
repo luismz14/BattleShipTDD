@@ -9,13 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-/**
- * Tests completos para la clase Coordinate
- * Técnicas aplicadas:
- * - Particiones Equivalentes (90% de particiones)
- * - Valores Límite y Frontera (90% de casos límite)
- * - Data-Driven Testing con @ParameterizedTest
- */
+// Test class for Coordinate: unit tests, limit values, boundary values and pairwise testing
 public class CoordinateTest {
 
     @Test

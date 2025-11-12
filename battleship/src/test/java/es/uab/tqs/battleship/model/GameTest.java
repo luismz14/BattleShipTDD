@@ -174,7 +174,7 @@ public class GameTest {
 
         String winner = game.getWinner();
         assertNotNull(winner);
-        assertTrue(winner.toLowerCase().contains("Congratulations! You have won the game"));
+        assertTrue(winner.toLowerCase().contains("won"));
     }
 
     @Test

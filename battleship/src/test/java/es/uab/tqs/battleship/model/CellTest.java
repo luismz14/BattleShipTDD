@@ -45,7 +45,7 @@ public class CellTest {
 
         assertFalse(hit);
         assertEquals(CellState.MISS, cell.getState());
-        assertTrue(cell.isAttacked());
+        assertTrue(cell.isAlreadyAttacked());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class CellTest {
 
         assertTrue(hit);
         assertEquals(CellState.HIT, cell.getState());
-        assertTrue(cell.isAttacked());
+        assertTrue(cell.isAlreadyAttacked());
         assertEquals(initialHits + 1, ship.getHitCount());
     }
 
@@ -83,11 +83,11 @@ public class CellTest {
 
     @Test
     public void testIsAttackedFalseForUntouchedCell() {
-        assertFalse(cell.isAttacked());
+        assertFalse(cell.isAlreadyAttacked());
 
         Ship ship = new Ship(ShipType.SUBMARINE);
         cell.setShip(ship);
-        assertFalse(cell.isAttacked());
+        assertFalse(cell.isAlreadyAttacked());
     }
 
     @Test
@@ -96,13 +96,13 @@ public class CellTest {
         cell.setShip(ship);
         cell.attack();
 
-        assertTrue(cell.isAttacked());
+        assertTrue(cell.isAlreadyAttacked());
     }
 
     @Test
     public void testIsAttackedTrueForMissCell() {
         cell.attack();
-        assertTrue(cell.isAttacked());
+        assertTrue(cell.isAlreadyAttacked());
     }
 
     @Test

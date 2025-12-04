@@ -47,7 +47,6 @@ public class BoardControllerTest {
         controller = new BoardController(mockView);
     }
 
-
     @Test
     public void testAttemptPlaceShipSuccess() {
         Ship ship = new Ship(ShipType.DESTROYER);

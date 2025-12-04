@@ -141,7 +141,7 @@ public class ConsoleView implements GameView {
         System.out.print(prompt + " (y/n): ");
         String response = scanner.nextLine().trim().toLowerCase();
         return response.equals("s") || response.equals("si") || 
-               response.equals("y") || response.equals("yes");
+                response.equals("y") || response.equals("yes");
     }
 
     public void close() {

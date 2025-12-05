@@ -41,7 +41,7 @@ public class GameController {
         playGameLoop();
     }
 
-    private void playGameLoop() {
+    public void playGameLoop() {
         while (!game.isGameOver()) {
             if (game.getStatus() == GameStatus.PLAYER_TURN) {
                 processPlayerTurn();
@@ -53,7 +53,7 @@ public class GameController {
         displayFinalResult();
     }
 
-    private void processPlayerTurn() {
+    public void processPlayerTurn() {
         view.displayMessage("\n=== YOUR TURN ===\n");
         view.displayMessage("Enemy board:");
         view.displayBoard(game.getComputerBoard(), true);
@@ -76,7 +76,7 @@ public class GameController {
         }
     }
 
-    private void processComputerTurn() {
+    public void processComputerTurn() {
         view.displayMessage("\n=== COMPUTER'S TURN ===\n");
         view.displayMessage("The computer is attacking...\n");
 
@@ -102,7 +102,7 @@ public class GameController {
         }
     }
 
-    private void displayFinalResult() {
+    public void displayFinalResult() {
         view.displayMessage("\nFinal enemy board:");
         view.displayBoard(game.getComputerBoard(), false);
 

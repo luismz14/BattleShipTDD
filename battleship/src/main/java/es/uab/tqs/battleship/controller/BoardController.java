@@ -65,7 +65,7 @@ public class BoardController {
     }
 
     public boolean attemptPlaceShip(Board board, Ship ship, 
-                                   Coordinate start, Orientation orientation) {
+                                    Coordinate start, Orientation orientation) {
         if (!board.isValidPlacement(ship, start, orientation)) {
             return false;
         }

@@ -33,8 +33,8 @@ jobs:
 
     # 4. Install dependencies
     - name: Install dependencies
-      run: mvn install -DskipTests
+      run: mvn install -DskipTests --file battleship/pom.xml
 
     # 5. Run tests
     - name: Run tests
-      run: mvn test
+      run: mvn test --file battleship/pom.xml

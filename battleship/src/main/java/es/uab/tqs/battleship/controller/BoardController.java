@@ -15,6 +15,7 @@ public class BoardController {
         this.view = view;
     }
 
+    // Loop to set up player's ships on the board
     public void setupPlayerShips(Board board) {
         ShipType[] shipTypes = ShipType.values();
 

@@ -9,19 +9,8 @@ import java.util.List;
  */
 public class Board {
 
-    /**
-     * A 2D array of cells representing the grid of the board.
-     */
     private final Cell[][] cells;
-
-    /**
-     * A list of ships placed on the board.
-     */
     private final List<Ship> ships;
-
-    /**
-     * The size of the board (e.g., 10 for a 10x10 grid).
-     */
     private final int size;
 
     /**

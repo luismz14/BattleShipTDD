@@ -71,6 +71,10 @@ public class GameController {
                 view.displayMessage("You have sunk an enemy ship!\n");
             }
 
+            if (result == AttackResult.HIT) {
+                view.displayMessage("You hitted an enemy ship!\n");
+            }
+
         } catch (IllegalArgumentException e) {
             view.displayMessage("Error: " + e.getMessage());
         }

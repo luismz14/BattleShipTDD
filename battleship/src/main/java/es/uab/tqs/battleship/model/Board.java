@@ -50,7 +50,7 @@ public class Board {
 
             if (orientation == Orientation.HORIZONTAL) {
                 currentX += i;
-            } else if (orientation == Orientation.VERTICAL) {
+            } else {
                 currentY += i;
             }
 

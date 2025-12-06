@@ -8,30 +8,51 @@ import es.uab.tqs.battleship.model.Ship;
 import es.uab.tqs.battleship.model.ShipType;
 import es.uab.tqs.battleship.view.GameView;
 
+/**
+ * Controls the interactions related to the game board.
+ * This controller handles ship placement, validates attacks, and manages board
+ * statistics.
+ * It interacts with the Board model and the GameView to display information to
+ * the user.
+ */
 public class BoardController {
+
     private final GameView view;
 
+    /**
+     * Constructs a new BoardController with the specified view.
+     *
+     * @param view The game view interface.
+     */
     public BoardController(GameView view) {
         this.view = view;
     }
 
-    /** 
-     * @param board
+    /**
+     * Orchestrates the setup phase where the player places all their ships on the
+     * board.
+     * Iterates through all available ship types and prompts the user for
+     * coordinates and orientation.
+     * Validates the placement and provides feedback (success or failure) to the
+     * user.
+     *
+     * @param board The board where the ships will be placed.
      */
-    // Loop to set up player's ships on the board
     public void setupPlayerShips(Board board) {
         ShipType[] shipTypes = ShipType.values();
 
         for (ShipType type : shipTypes) {
             boolean placed = false;
 
+            // Loop until the current ship is successfully placed
             while (!placed) {
                 view.displayMessage("\nCurrent board:");
                 view.displayBoard(board, false);
 
-                view.displayMessage("\nPlace your " + type.getDisplayName() 
-                    + " (length: " + type.getLength() + ")");
+                view.displayMessage("\nPlace your " + type.getDisplayName()
+                        + " (length: " + type.getLength() + ")");
 
+                // Get input from the user via the view
                 Coordinate start = view.getCoordinateInput("Initial coordinate");
                 Orientation orientation = view.getOrientationInput();
 
@@ -49,15 +70,19 @@ public class BoardController {
         view.displayMessage("\n¡All your ships are in place!\n");
     }
 
-    /** 
-     * @param board
-     * @param ship
-     * @param start
-     * @param orientation
-     * @return boolean
+    /**
+     * Attempts to place a ship on the board at the specified location.
+     * Delegates the validation and placement logic to the Board model.
+     *
+     * @param board       The board to place the ship on.
+     * @param ship        The ship object to be placed.
+     * @param start       The starting coordinate for the ship.
+     * @param orientation The orientation of the ship.
+     * @return true if the ship was successfully placed; false otherwise.
      */
-    public boolean attemptPlaceShip(Board board, Ship ship, 
-                                    Coordinate start, Orientation orientation) {
+    public boolean attemptPlaceShip(Board board, Ship ship,
+            Coordinate start, Orientation orientation) {
+
         if (!board.isValidPlacement(ship, start, orientation)) {
             return false;
         }
@@ -65,12 +90,17 @@ public class BoardController {
         return board.placeShip(ship, start, orientation);
     }
 
-    /** 
-     * @param board
-     * @param coordinate
-     * @return boolean
+    /**
+     * Validates if an attack on a specific coordinate is legal.
+     * An attack is valid if the coordinate is within bounds and the cell has not
+     * been attacked yet.
+     *
+     * @param board      The target board.
+     * @param coordinate The coordinate to attack.
+     * @return true if the attack is valid; false otherwise.
      */
     public boolean isValidAttack(Board board, Coordinate coordinate) {
+
         if (!coordinate.isValid(board.getSize())) {
             return false;
         }
@@ -79,9 +109,11 @@ public class BoardController {
         return !cell.isAlreadyAttacked();
     }
 
-    /** 
-     * @param board
-     * @return int
+    /**
+     * Calculates the number of ships remaining (not sunk) on the board.
+     *
+     * @param board The board to check.
+     * @return The count of active ships.
      */
     public int getRemainingShips(Board board) {
         int remaining = 0;
@@ -95,8 +127,11 @@ public class BoardController {
         return remaining;
     }
 
-    /** 
-     * @param board
+    /**
+     * Displays statistical information about the board to the user.
+     * Shows total ships, remaining active ships, and sunk ships.
+     *
+     * @param board The board to display stats for.
      */
     public void displayBoardStats(Board board) {
         int total = board.getShipCount();

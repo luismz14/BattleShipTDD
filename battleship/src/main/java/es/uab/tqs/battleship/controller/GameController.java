@@ -117,6 +117,9 @@ public class GameController {
         view.displayGameResult(winner);
     }
 
+    /** 
+     * @return Game
+     */
     //test purpose
     public Game getGame() {
         return game;

@@ -15,14 +15,23 @@ public class Game {
         this.random = new Random();
     }
 
+    /** 
+     * @return Board
+     */
     public Board getPlayerBoard() {
         return playerBoard;
     }
 
+    /** 
+     * @return Board
+     */
     public Board getComputerBoard() {
         return computerBoard;
     }
 
+    /** 
+     * @return GameStatus
+     */
     public GameStatus getStatus() {
         return status;
     }
@@ -33,6 +42,10 @@ public class Game {
         }
     }
 
+    /** 
+     * @param coordinate
+     * @return AttackResult
+     */
     public AttackResult processPlayerAttack(Coordinate coordinate) {
         if (status != GameStatus.PLAYER_TURN) {
             throw new IllegalStateException("No es el turno del jugador");
@@ -49,6 +62,9 @@ public class Game {
         return result;
     }
 
+    /** 
+     * @return Coordinate
+     */
     public Coordinate processComputerAttack() {
         if (status != GameStatus.COMPUTER_TURN) {
             throw new IllegalStateException("No es el turno de la computadora");
@@ -66,6 +82,9 @@ public class Game {
         return attackCoord;
     }
 
+    /** 
+     * @return Coordinate
+     */
     private Coordinate generateRandomAttack() {
         Coordinate coord;
         Cell cell;
@@ -80,6 +99,9 @@ public class Game {
         return coord;
     }
 
+    /** 
+     * @return boolean
+     */
     public boolean isGameOver() {
         if (computerBoard.allShipsSunk()) {
             return true;
@@ -92,6 +114,9 @@ public class Game {
         return false;
     }
 
+    /** 
+     * @return String
+     */
     public String getWinner() {
         if (status == GameStatus.PLAYER_WON) {
             return "Congratulations! You have won the game.";

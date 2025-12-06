@@ -11,22 +11,37 @@ public class Cell {
         this.ship = null;
     }
 
+    /** 
+     * @return CellState
+     */
     public CellState getState() {
         return state;
     }
 
+    /** 
+     * @param state
+     */
     public void setState(CellState state) {
         this.state = state;
     }
 
+    /** 
+     * @return Coordinate
+     */
     public Coordinate getCoordinate() {
         return coordinate;
     }
 
+    /** 
+     * @return boolean
+     */
     public boolean hasShip() {
         return ship != null;
     }
 
+    /** 
+     * @param ship
+     */
     public void setShip(Ship ship) {
         this.ship = ship;
         if (ship != null) {
@@ -34,10 +49,16 @@ public class Cell {
         }
     }
 
+    /** 
+     * @return Ship
+     */
     public Ship getShip() {
         return ship;
     }
 
+    /** 
+     * @return boolean
+     */
     public boolean attack() {
         if (hasShip()) {
             state = CellState.HIT;
@@ -50,6 +71,9 @@ public class Cell {
         }
     }
 
+    /** 
+     * @return boolean
+     */
     public boolean isAlreadyAttacked() {
         return state == CellState.HIT || state == CellState.MISS;
     }

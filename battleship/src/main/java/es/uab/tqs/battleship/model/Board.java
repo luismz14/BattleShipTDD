@@ -20,10 +20,18 @@ public class Board {
         }
     }
 
+    /** 
+     * @return int
+     */
     public int getSize() {
         return size;
     }
 
+    /** 
+     * @param x
+     * @param y
+     * @return Cell
+     */
     public Cell getCell(int x, int y) {
         if (x < 0 || x >= size || y < 0 || y >= size) {
             throw new IllegalArgumentException("Invalid coordinates: (" + x + ", " + y + ")");
@@ -31,10 +39,20 @@ public class Board {
         return cells[x][y];
     }
 
+    /** 
+     * @param coordinate
+     * @return Cell
+     */
     public Cell getCell(Coordinate coordinate) {
         return getCell(coordinate.getX(), coordinate.getY());
     }
 
+    /** 
+     * @param ship
+     * @param start
+     * @param orientation
+     * @return boolean
+     */
     public boolean isValidPlacement(Ship ship, Coordinate start, Orientation orientation) {
         int length = ship.getLength();
         int x = start.getX();
@@ -66,6 +84,12 @@ public class Board {
         return true;
     }
 
+    /** 
+     * @param ship
+     * @param start
+     * @param orientation
+     * @return boolean
+     */
     public boolean placeShip(Ship ship, Coordinate start, Orientation orientation) {
         if (!isValidPlacement(ship, start, orientation)) {
             return false;
@@ -81,6 +105,10 @@ public class Board {
         return true;
     }
 
+    /** 
+     * @param coordinate
+     * @return AttackResult
+     */
     public AttackResult processAttack(Coordinate coordinate) {
         if (!coordinate.isValid(size)) {
             throw new IllegalArgumentException("Invalid coordinate: " + coordinate);
@@ -105,6 +133,9 @@ public class Board {
         }
     }
 
+    /** 
+     * @return boolean
+     */
     public boolean allShipsSunk() {
         if (ships.isEmpty()) {
             return false;
@@ -118,10 +149,16 @@ public class Board {
         return true;
     }
 
+    /** 
+     * @return List<Ship>
+     */
     public List<Ship> getShips() {
         return new ArrayList<>(ships);
     }
 
+    /** 
+     * @return int
+     */
     public int getShipCount() {
         return ships.size();
     }

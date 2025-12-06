@@ -16,6 +16,10 @@ public class ConsoleView implements GameView {
         this.scanner = new Scanner(System.in);
     }
 
+    /** 
+     * @param board
+     * @param hideShips
+     */
     @Override
     public void displayBoard(Board board, boolean hideShips) {
         System.out.println("\n  0 1 2 3 4 5 6 7 8 9");
@@ -35,6 +39,11 @@ public class ConsoleView implements GameView {
         System.out.println("  -------------------\n");
     }
 
+    /** 
+     * @param cell
+     * @param hideShips
+     * @return String
+     */
     private String getCellDisplay(Cell cell, boolean hideShips) {
         CellState state = cell.getState();
 
@@ -51,16 +60,25 @@ public class ConsoleView implements GameView {
         }
     }
 
+    /** 
+     * @param message
+     */
     @Override
     public void displayMessage(String message) {
         System.out.println(message);
     }
 
+    /** 
+     * @param result
+     */
     @Override
     public void displayAttackResult(AttackResult result) {
         System.out.println("\n>>> " + result.getMessage() + " <<<\n");
     }
 
+    /** 
+     * @return Orientation
+     */
     @Override
     public Orientation getOrientationInput() {
         while (true) {
@@ -77,6 +95,10 @@ public class ConsoleView implements GameView {
         }
     }
 
+    /** 
+     * @param prompt
+     * @return Coordinate
+     */
     @Override
     public Coordinate getCoordinateInput(String prompt) {
         while (true) {
@@ -108,6 +130,9 @@ public class ConsoleView implements GameView {
         }
     }
 
+    /** 
+     * @param winner
+     */
     @Override
     public void displayGameResult(String winner) {
         System.out.println("\n" + "=".repeat(40));
@@ -153,6 +178,10 @@ public class ConsoleView implements GameView {
         }
     }
 
+    /** 
+     * @param prompt
+     * @return boolean
+     */
     @Override
     public boolean getConfirmation(String prompt) {
         System.out.print(prompt + " (y/n): ");

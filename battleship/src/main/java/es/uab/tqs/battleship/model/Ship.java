@@ -17,20 +17,33 @@ public class Ship {
     }
 
 
+    /** 
+     * @return ShipType
+     */
     public ShipType getType() {
         return type;
     }
 
 
+    /** 
+     * @return int
+     */
     public int getLength() {
         return type.getLength();
     }
 
+    /** 
+     * @return List<Coordinate>
+     */
     public List<Coordinate> getCoordinates() {
         return new ArrayList<>(coordinates);
     }
 
 
+    /** 
+     * @param startCoordinate
+     * @param orientation
+     */
     public void setPosition(Coordinate startCoordinate, Orientation orientation) {
         this.orientation = orientation;
         this.coordinates.clear();
@@ -49,6 +62,9 @@ public class Ship {
         }
     }
 
+    /** 
+     * @return Orientation
+     */
     public Orientation getOrientation() {
         return orientation;
     }
@@ -58,16 +74,26 @@ public class Ship {
     }
 
 
+    /** 
+     * @return int
+     */
     public int getHitCount() {
         return hitCount;
     }
 
 
+    /** 
+     * @return boolean
+     */
     public boolean isSunk() {
         return hitCount >= getLength();
     }
 
 
+    /** 
+     * @param coordinate
+     * @return boolean
+     */
     public boolean occupiesCoordinate(Coordinate coordinate) {
         for (Coordinate coord : coordinates) {
             if (coord.equals(coordinate)) {
@@ -77,6 +103,9 @@ public class Ship {
         return false;
     }
 
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return type.getDisplayName() + " (" + getLength() + " cells)";

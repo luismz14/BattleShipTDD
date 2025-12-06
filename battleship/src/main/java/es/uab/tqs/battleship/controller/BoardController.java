@@ -15,6 +15,9 @@ public class BoardController {
         this.view = view;
     }
 
+    /** 
+     * @param board
+     */
     // Loop to set up player's ships on the board
     public void setupPlayerShips(Board board) {
         ShipType[] shipTypes = ShipType.values();
@@ -46,6 +49,13 @@ public class BoardController {
         view.displayMessage("\n¡All your ships are in place!\n");
     }
 
+    /** 
+     * @param board
+     * @param ship
+     * @param start
+     * @param orientation
+     * @return boolean
+     */
     public boolean attemptPlaceShip(Board board, Ship ship, 
                                     Coordinate start, Orientation orientation) {
         if (!board.isValidPlacement(ship, start, orientation)) {
@@ -55,6 +65,11 @@ public class BoardController {
         return board.placeShip(ship, start, orientation);
     }
 
+    /** 
+     * @param board
+     * @param coordinate
+     * @return boolean
+     */
     public boolean isValidAttack(Board board, Coordinate coordinate) {
         if (!coordinate.isValid(board.getSize())) {
             return false;
@@ -64,6 +79,10 @@ public class BoardController {
         return !cell.isAlreadyAttacked();
     }
 
+    /** 
+     * @param board
+     * @return int
+     */
     public int getRemainingShips(Board board) {
         int remaining = 0;
 
@@ -76,6 +95,9 @@ public class BoardController {
         return remaining;
     }
 
+    /** 
+     * @param board
+     */
     public void displayBoardStats(Board board) {
         int total = board.getShipCount();
         int remaining = getRemainingShips(board);

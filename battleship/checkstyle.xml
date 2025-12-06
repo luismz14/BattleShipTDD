@@ -6,10 +6,11 @@
 <module name="Checker">
   <module name="FileTabCharacter"/>
   
-  <module name="TreeWalker">
-    <module name="LineLength">
+  <module name="LineLength">
       <property name="max" value="150"/>
-    </module>
+  </module>
+
+  <module name="TreeWalker">
     <module name="AvoidStarImport"/>
   </module>
 </module>

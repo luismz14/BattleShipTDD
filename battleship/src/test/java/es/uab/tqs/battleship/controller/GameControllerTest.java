@@ -14,6 +14,7 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -105,6 +106,35 @@ public class GameControllerTest {
 
         verify(mockView).displayAttackResult(AttackResult.SUNK);
         verify(mockView).displayMessage(org.mockito.ArgumentMatchers.contains("sunk an enemy ship"));
+    }
+
+    @Test
+    void testProcessPlayerTurn_CatchIllegalArgumentException() {
+        Coordinate mockCoordinate = new Coordinate(1, 1); 
+        when(mockView.getCoordinateInput(anyString())).thenReturn(mockCoordinate);
+
+        String errorMsg = "Already attacked coordinate";
+        when(mockGame.processPlayerAttack(mockCoordinate))
+            .thenThrow(new IllegalArgumentException(errorMsg));
+
+        controller.processPlayerTurn();
+
+        verify(mockView).displayMessage("Error: " + errorMsg);
+        
+        verify(mockView, never()).displayAttackResult(any());
+    }
+    
+    @Test
+    public void testProcessPlayerTurn_HitShip() {
+        Coordinate target = new Coordinate(1, 1);
+        
+        when(mockView.getCoordinateInput(anyString())).thenReturn(target);
+        when(mockGame.processPlayerAttack(target)).thenReturn(AttackResult.HIT);
+
+        controller.processPlayerTurn();
+
+        verify(mockView).displayAttackResult(AttackResult.HIT);
+        verify(mockView).displayMessage(org.mockito.ArgumentMatchers.contains("hitted an enemy ship"));
     }
 
     @Test

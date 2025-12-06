@@ -7,6 +7,7 @@ import es.uab.tqs.battleship.model.Board;
 import es.uab.tqs.battleship.model.Cell;
 import es.uab.tqs.battleship.model.CellState;
 import es.uab.tqs.battleship.model.Coordinate;
+import es.uab.tqs.battleship.model.Orientation;
 
 public class ConsoleView implements GameView {
     private final Scanner scanner;
@@ -58,6 +59,22 @@ public class ConsoleView implements GameView {
     @Override
     public void displayAttackResult(AttackResult result) {
         System.out.println("\n>>> " + result.getMessage() + " <<<\n");
+    }
+
+    @Override
+    public Orientation getOrientationInput() {
+        while (true) {
+            System.out.print("Orientation (H=horizontal, V=vertical): ");
+            String input = scanner.nextLine().trim().toUpperCase();
+
+            if (input.equals("H") || input.equals("HORIZONTAL")) {
+                return Orientation.HORIZONTAL;
+            } else if (input.equals("V") || input.equals("VERTICAL")) {
+                return Orientation.VERTICAL;
+            } else {
+                displayMessage("Invalid entry. Use H o V.");
+            }
+        }
     }
 
     @Override

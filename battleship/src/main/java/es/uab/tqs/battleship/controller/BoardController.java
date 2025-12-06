@@ -30,7 +30,7 @@ public class BoardController {
                     + " (length: " + type.getLength() + ")");
 
                 Coordinate start = view.getCoordinateInput("Initial coordinate");
-                Orientation orientation = getOrientationInput();
+                Orientation orientation = view.getOrientationInput();
 
                 Ship ship = new Ship(type);
                 placed = attemptPlaceShip(board, ship, start, orientation);
@@ -44,25 +44,6 @@ public class BoardController {
         }
 
         view.displayMessage("\n¡All your ships are in place!\n");
-    }
-
-    private Orientation getOrientationInput() {
-        while (true) {
-            view.displayMessage("Orientation (H=horizontal, V=vertical): ");
-            String input = System.console() != null 
-                ? System.console().readLine() 
-                : new java.util.Scanner(System.in).nextLine();
-
-            input = input.trim().toUpperCase();
-
-            if (input.equals("H") || input.equals("HORIZONTAL")) {
-                return Orientation.HORIZONTAL;
-            } else if (input.equals("V") || input.equals("VERTICAL")) {
-                return Orientation.VERTICAL;
-            } else {
-                view.displayMessage("Invalid entry. Use H o V.");
-            }
-        }
     }
 
     public boolean attemptPlaceShip(Board board, Ship ship, 

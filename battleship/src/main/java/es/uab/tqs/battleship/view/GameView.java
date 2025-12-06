@@ -3,6 +3,7 @@ package es.uab.tqs.battleship.view;
 import es.uab.tqs.battleship.model.AttackResult;
 import es.uab.tqs.battleship.model.Board;
 import es.uab.tqs.battleship.model.Coordinate;
+import es.uab.tqs.battleship.model.Orientation;
 
 public interface GameView {
 
@@ -13,6 +14,8 @@ public interface GameView {
     void displayAttackResult(AttackResult result);
 
     Coordinate getCoordinateInput(String prompt);
+
+    Orientation getOrientationInput();
 
     void displayGameResult(String winner);
 

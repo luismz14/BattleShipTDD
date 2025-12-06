@@ -1,6 +1,5 @@
 package es.uab.tqs.battleship.controller;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -94,7 +93,6 @@ public class BoardControllerTest {
         verify(mockBoard).placeShip(ship, start, orientation);
     }
 
-
     @Test
     public void testIsValidAttackValid() {
         Coordinate coord = new Coordinate(5, 5);
@@ -132,7 +130,6 @@ public class BoardControllerTest {
 
         assertFalse(result);
     }
-
 
     @Test
     public void testGetRemainingShipsAllActive() {
@@ -198,7 +195,6 @@ public class BoardControllerTest {
         assertEquals(0, remaining);
     }
 
-
     @Test
     public void testDisplayBoardStats() {
         Ship mockShip1 = mock(Ship.class);
@@ -247,5 +243,23 @@ public class BoardControllerTest {
 
         verify(mockBoard, times(1)).isValidPlacement(ship, start, orientation);
         verify(mockBoard, times(1)).placeShip(ship, start, orientation);
+    }
+
+    @Test
+    public void testSetupPlayerShips() {
+        Coordinate mockCoord = new Coordinate(0, 0);
+        when(mockView.getCoordinateInput(anyString())).thenReturn(mockCoord);
+        when(mockView.getOrientationInput()).thenReturn(Orientation.HORIZONTAL);
+
+        when(mockBoard.isValidPlacement(any(Ship.class), any(Coordinate.class), any(Orientation.class)))
+                .thenReturn(true);
+        when(mockBoard.placeShip(any(Ship.class), any(Coordinate.class), any(Orientation.class)))
+                .thenReturn(true);
+
+        controller.setupPlayerShips(mockBoard);
+
+        verify(mockBoard, times(5)).placeShip(any(Ship.class), any(Coordinate.class), any(Orientation.class));
+        verify(mockView, times(5)).getOrientationInput();
+        verify(mockView).displayMessage(org.mockito.ArgumentMatchers.contains("All your ships are in place"));
     }
 }
